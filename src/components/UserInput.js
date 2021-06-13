@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 class UserInput extends Component {
@@ -11,12 +11,16 @@ class UserInput extends Component {
   handleInputChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value
-    });
+    })
   }
 
   handleOnSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     this.props.dispatch({type: 'ADD_USER', user: this.state})
+    this.setState({
+      username: '',
+      hometown: ''
+    })
   }
 
   render() {
@@ -24,18 +28,18 @@ class UserInput extends Component {
       <form onSubmit={this.handleOnSubmit}>
         <p>
           <input
-            type="text"
             id="username"
             onChange={this.handleInputChange}
             placeholder="username"
+            value={this.state.username}
           />
         </p>
         <p>
           <input
-            type="text"
             id="hometown"
             onChange={this.handleInputChange}
             placeholder="hometown"
+            value={this.state.hometown}
           />
         </p>
         <input type="submit" />
